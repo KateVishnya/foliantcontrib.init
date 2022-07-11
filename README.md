@@ -18,18 +18,18 @@ Create project from the default “base” template:
 
 ```shell
 $ foliant init
+
 Enter the project name: Awesome Docs
 ✔ Generating Foliant project
 ─────────────────────
 Project "Awesome Docs" created in awesome-docs
 ```
 
+You can use the git repository as a template. In this case, you must specify the url of the repository.
 Create project from a custom template:
 
 ```shell
 $ foliant init --template /path/to/custom/template
-
-You can use the git repository as a template. In this case, you must specify the url of the repository.
 
 Enter the project name: Awesome Customized Docs
 ✔ Generating Foliant project
