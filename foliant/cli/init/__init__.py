@@ -1,7 +1,7 @@
 '''Project generator for Foliant.'''
 
 from pathlib import Path
-from shutil import copytree
+from shutil import copytree, rmtree
 from functools import reduce
 from string import Template
 from logging import DEBUG, WARNING
@@ -67,6 +67,12 @@ class Cli(BaseCli):
         self.logger.info('Project creation started.')
 
         self.logger.debug(f'Template: {template}')
+
+        if validators.url(template):
+            Repo.clone_from(template, path_to_folder)
+        else:
+            self.logger.critical("Incorrect url address to the git repository.")
+            exit(1)
 
         template_path = Path(template)
 
@@ -146,6 +152,8 @@ class Cli(BaseCli):
                 item.rename(Template(item.as_posix()).safe_substitute(properties))
 
             result = project_path
+            
+            shutil.rmtree(template_path)
 
         if result:
             self.logger.info(f'Result: {result}')
